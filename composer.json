@@ -17,6 +17,8 @@
 			"Spade":   "src/"
 		}
 	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
 		"swiftmailer/swiftmailer": "v5.2.1",
 		"mustache/mustache": "v2.6.1",
