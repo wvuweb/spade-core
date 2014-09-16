@@ -1,0 +1,33 @@
+{
+	"name":             "spade/core",
+	"description":      "The core functionality for the Spade framework.",
+	"license":          "MIT",
+	"authors": [
+		{
+			"name":         "Dave Olsen",
+			"email":        "dmolsen@mail.wvu.edu",
+			"role":         "Lead Developer"
+		}
+	],
+	"support": {
+		"source":         "https://stash.development.wvu.edu/projects/SPD/repos/core/browse"
+	},
+	"autoload": {
+		"psr-0": {
+			"Spade":   "src/"
+		}
+	},
+	"require": {
+		"swiftmailer/swiftmailer": "v5.2.1",
+		"mustache/mustache": "v2.6.1",
+		"bkcore/nocsrf": "dev-master",
+		"j7mbo/twitter-api-php": "dev-master",
+		"lox/pheasant": "v1.3.0",
+		"symfony/yaml": "v2.5.3",
+		"slim/slim": "2.*",
+		"egulias/email-validator": "1.*",
+		"seld/jsonlint": "1.1.2",
+		"kevinlebrun/colors.php": "0.*",
+		"michelf/php-markdown": "1.4"
+	}
+}
