@@ -1,0 +1,7 @@
+{
+	"packages": {
+		"spade/project-starter": {
+			"dev-master": { @composer.json }
+		}
+	}
+}
