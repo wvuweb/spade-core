@@ -158,7 +158,7 @@ class Render {
 	 */
 	public static function string($string,$data = array(),$print = true) {
 		
-		$r = return self::$instanceString->render($string,$data);
+		$r = self::$instanceString->render($string,$data);
 		
 		if ($print) {
 			print $r;
