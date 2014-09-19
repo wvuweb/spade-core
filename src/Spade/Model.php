@@ -24,11 +24,12 @@ class Model {
 	public static function init() {
 		
 		// set-up the database connection info
-		$database   = Config::getOption("database");
-		$dbhost     = Config::getOption("dbhost");
-		$dbuser     = Config::getOption("dbuser");
-		$dbpassword = Config::getOption("dbpassword");
-		Pheasant::setup("mysql://".$dbuser.":".$dbpassword."@".$dbhost.":3306/".$database);
+		$name = Config::getOption("name");
+		$host = Config::getOption("host");
+		$user = Config::getOption("user");
+		$pass = Config::getOption("pass");
+		$port = Config::getOption("port");
+		Pheasant::setup("mysql://".$user.":".$pass."@".$host.":".$port."/".$name);
 		
 	}
 	
