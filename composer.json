@@ -30,6 +30,7 @@
 		"egulias/email-validator": "1.*",
 		"seld/jsonlint": "1.1.2",
 		"kevinlebrun/colors.php": "0.*",
-		"michelf/php-markdown": "1.4"
+		"michelf/php-markdown": "1.4",
+		"robmorgan/phinx": "0.*"
 	}
 }
