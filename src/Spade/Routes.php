@@ -36,16 +36,18 @@ class Routes {
 		foreach ($routes as $route) {
 			
 			// parse the route
-			preg_match("/(get|post)[\s]{1,2}(/(.*))( as (.*)(\:(.*))?)?/i",$route,$matches);
+			preg_match("/(get|post)[\s]{1,2}([\S]{1,})( as (.*)(\:(.*))?)?/i",$route,$match);
 			
 			// figure out the parts
 			$httpMethod = $match[1];
 			$route      = $match[2];
-			$controller = (isset($match[5])) ? $match[5] : strtoupper(str_replace("/","",$route));
-			$action     = (isset($match[7])) ? $match[7] : strtolower($httpMethod);
+			$controller = (isset($match[4])) ? $match[4] : ucfirst(str_replace("/","",$route));
+			$action     = (isset($match[6])) ? $match[6] : strtolower($httpMethod);
 			
 			// setup the routes
-			$app->$httpMethod($route, '\\'.$namespace.'\Controllers\\'.$controller.':'.$action);
+			// example: $app->get('/', 'Pages:home');
+			$method = "\\".$namespace."\Controllers\\".$controller.":".$action;
+			$app->$httpMethod($route, $method);
 			
 		}
 		
