@@ -37,17 +37,17 @@ class DatabaseHandler {
 	public function setDbDetails(){
 		
 		//create db connection
-		$dbDatabase = Config::getOption("database");
-		$dbHost     = Config::getOption("dbhost");
-		$dbUser     = Config::getOption("dbuser");
-		$dbPassword = Config::getOption("dbpassword");
-		$this->dbConnection = new \mysqli($dbHost, $dbUser, $dbPassword, $dbDatabase);
+		$name = Config::getOption("name");
+		$host = Config::getOption("host");
+		$user = Config::getOption("user");
+		$pass = Config::getOption("pass");
+		$this->dbConnection = new \mysqli($host, $user, $pass, $name);
 		
 		//check connection
 		if (mysqli_connect_error()) {
-			throw new Exception('Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
-		}//if
-			
+			throw new \Exception('Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+		}
+		
 	}
 	
 	/**
