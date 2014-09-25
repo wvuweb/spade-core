@@ -20,17 +20,19 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"require": {
-		"swiftmailer/swiftmailer": "v5.2.1",
-		"mustache/mustache": "v2.6.1",
+		"swiftmailer/swiftmailer": "5.2.*",
+		"mustache/mustache": "2.*",
 		"bkcore/nocsrf": "dev-master",
 		"j7mbo/twitter-api-php": "dev-master",
-		"lox/pheasant": "v1.3.0",
-		"symfony/yaml": "v2.5.3",
+		"lox/pheasant": "1.3.*",
+		"symfony/yaml": "2.*",
 		"slim/slim": "2.*",
 		"egulias/email-validator": "1.*",
-		"seld/jsonlint": "1.1.2",
+		"seld/jsonlint": "1.*",
 		"kevinlebrun/colors.php": "0.*",
 		"michelf/php-markdown": "1.4",
-		"robmorgan/phinx": "0.*"
+		"robmorgan/phinx": "0.*",
+		"mthaml/mthaml": "1.6.*",
+		"twig/twig": "1.*"
 	}
 }

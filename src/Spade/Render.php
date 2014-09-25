@@ -27,17 +27,52 @@ class Render {
 	public static function init() {
 		
 		// set-up config vars
+		$templateEngine                     = Config::getOption("templateEngine");
 		$templatesDir                       = Config::getOption("baseDir").Config::getOption("templatesDir");
 		$partialsDir                        = Config::getOption("baseDir").Config::getOption("partialsDir");
 		
-		// set-up the file system loader
-		$mustacheOptions                    = array();
-		$mustacheOptions["loader"]          = new \Mustache_Loader_FilesystemLoader($templatesDir);
-		$mustacheOptions["partials_loader"] = new \Mustache_Loader_FilesystemLoader($partialsDir);
-		self::$instance                     = new \Mustache_Engine($mustacheOptions);
-		
-		// set-up the default instance
-		self::$instanceString               = new \Mustache_Engine;
+		// set-up the file system instance & string instance based on selected template engine
+		if ($templateEngine == "mustache") {
+			
+			$mustacheOptions                    = array();
+			$mustacheOptions["loader"]          = new \Mustache_Loader_FilesystemLoader($templatesDir);
+			$mustacheOptions["partials_loader"] = new \Mustache_Loader_FilesystemLoader($partialsDir);
+			self::$instance                     = new \Mustache_Engine($mustacheOptions);
+			
+			self::$instanceString               = new \Mustache_Engine;
+			
+		} else if ($templateEngine == "twig") {
+			
+			$twigLoader = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
+			self::$instance new \Twig_Environment($twigLoader);
+			
+			$twigLoader = new \Twig_Loader_String();
+			self::$instanceString = new \Twig_Environment($twigLoader);
+			
+		} else if ($templateEngine == "haml") {
+			
+			$twigLoader     = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
+			$twigInstance   = new \Twig_Environment($twigLoader);
+			$haml           = new \MtHaml\Environment('twig', array('enable_escaper' => false));
+			$hamlLoader     = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
+			$twigInstance->setLoader($hamlLoader);
+			$twigInstance->addExtension(new \MtHaml\Support\Twig\Extension());
+			self::$instance = $twigInstance;
+			
+			$twigLoader     = new \Twig_Loader_String();
+			$twigInstance   = new \Twig_Environment($twigLoader);
+			$haml           = new \MtHaml\Environment('twig', array('enable_escaper' => false));
+			$hamlLoader     = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
+			$twigInstance->setLoader($hamlLoader);
+			$twigInstance->addExtension(new \MtHaml\Support\Twig\Extension());
+			self::$instanceString = $twigInstance;
+			
+		} else {
+			
+			print "the templateEngine option ".$templateEngine." is invalid...";
+			exit;
+			
+		}
 		
 	}
 	
