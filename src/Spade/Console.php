@@ -42,7 +42,7 @@ class Console {
 		
 		// define the pattern lab color theme
 		$colorTheme = array();
-		$colorTheme["h1"]       = "bold";
+		$colorTheme["h1"]       = array("bold","magenta");
 		$colorTheme["h2"]       = "underline";
 		$colorTheme["optional"] = "italic";
 		$colorTheme["desc"]     = "green";
