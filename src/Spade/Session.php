@@ -91,6 +91,23 @@ class Session {
 	}
 	
 	/**
+	* Get an option from the session
+	*/
+	public static function getOption() {
+		
+		if (empty($optionName)) {
+			return false;
+		}
+		
+		if (array_key_exists($optionName,$_SESSION)) {
+			return $_SESSION[$optionName];
+		}
+		
+		return false;
+		
+	}
+	
+	/**
 	* Remove a session
 	* @param  {Object}       the app object
 	*/
