@@ -36,7 +36,7 @@ class Routes {
 		foreach ($routes as $route) {
 			
 			// parse the route
-			preg_match("/(get|post)[\s]{1,2}([\S]{1,})( as (.*)(\:(.*))?)?/i",$route,$match);
+			preg_match("/(get|post)[\s]{1,2}([\S]{1,})( as ([A-z0-9]{1,})(\:(.*))?)?/i",$route,$match);
 			
 			// figure out the parts
 			$httpMethod = $match[1];
