@@ -43,29 +43,29 @@ class Render {
 			
 		} else if ($templateEngine == "twig") {
 			
-			$twigLoader = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
-			self::$instance new \Twig_Environment($twigLoader);
+			$twigLoader                         = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
+			self::$instance                     = new \Twig_Environment($twigLoader);
 			
-			$twigLoader = new \Twig_Loader_String();
-			self::$instanceString = new \Twig_Environment($twigLoader);
+			$twigLoader                         = new \Twig_Loader_String();
+			self::$instanceString               = new \Twig_Environment($twigLoader);
 			
 		} else if ($templateEngine == "haml") {
 			
-			$twigLoader     = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
-			$twigInstance   = new \Twig_Environment($twigLoader);
-			$haml           = new \MtHaml\Environment('twig', array('enable_escaper' => false));
-			$hamlLoader     = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
+			$twigLoader                         = new \Twig_Loader_Filesystem(array($templatesDir,$partialsDir));
+			$twigInstance                       = new \Twig_Environment($twigLoader);
+			$haml                               = new \MtHaml\Environment('twig', array('enable_escaper' => false));
+			$hamlLoader                         = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
 			$twigInstance->setLoader($hamlLoader);
 			$twigInstance->addExtension(new \MtHaml\Support\Twig\Extension());
-			self::$instance = $twigInstance;
+			self::$instance                     = $twigInstance;
 			
-			$twigLoader     = new \Twig_Loader_String();
-			$twigInstance   = new \Twig_Environment($twigLoader);
-			$haml           = new \MtHaml\Environment('twig', array('enable_escaper' => false));
-			$hamlLoader     = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
+			$twigLoader                         = new \Twig_Loader_String();
+			$twigInstance                       = new \Twig_Environment($twigLoader);
+			$haml                               = new \MtHaml\Environment('twig', array('enable_escaper' => false));
+			$hamlLoader                         = new \MtHaml\Support\Twig\Loader($haml, $twigInstance->getLoader());
 			$twigInstance->setLoader($hamlLoader);
 			$twigInstance->addExtension(new \MtHaml\Support\Twig\Extension());
-			self::$instanceString = $twigInstance;
+			self::$instanceString               = $twigInstance;
 			
 		} else {
 			
