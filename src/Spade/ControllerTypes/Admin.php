@@ -22,6 +22,7 @@ class Admin extends Controller {
 	function __construct() {
 		
 		// skip the timestamp check for this app
+		$this->data["showActions"] = true;
 		Session::check(true);
 		
 	}
