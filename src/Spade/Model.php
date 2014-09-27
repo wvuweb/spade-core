@@ -13,7 +13,6 @@ namespace Spade;
 
 use \Pheasant;
 use \Spade\Config;
-use \Spade\Render;
 use \Spade\Timer;
 
 class Model {
