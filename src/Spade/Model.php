@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2014 Dave Olsen
  *
- * Just some sugar to slim down index.php
+ * Initialize pheasant so we can connect to the database
  *
  */
 
