@@ -16,13 +16,6 @@ use \Spade\Controller;
 class Page extends Controller {
 	
 	/**
-	* Class start-up functions used by all pages
-	*/
-	function __construct() {
-		
-	}
-	
-	/**
 	* Get the flash message from the session
 	*/
 	public function getFlash($flash) {
