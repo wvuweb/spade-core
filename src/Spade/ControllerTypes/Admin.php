@@ -11,13 +11,13 @@
 
 namespace Spade\ControllerTypes;
 
-use \Spade\Controller;
+use \Spade\ControllerTypes\Page;
 use \Spade\Session;
 
-class Admin extends Controller {
+class Admin extends Page {
 	
 	/**
-	* Class start-up functions used by all of the steps
+	* Class start-up functions used by all admin pages
 	*/
 	function __construct() {
 		
