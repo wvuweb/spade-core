@@ -45,7 +45,7 @@ class Type extends ValidationTest {
 		$type   = strtolower($type);
 		
 		// allow for the test of ctypes
-		$cTypes = array("alnum", "alpha", "cntrl", "digit", "graph", "lower", "print", "punct", "Spade", "upper", "xdigit");
+		$cTypes = array("alnum", "alpha", "cntrl", "digit", "graph", "lower", "print", "punct", "space", "upper", "xdigit");
 		
 		// figure out the function name
 		if (in_array($type,$cTypes)) {
