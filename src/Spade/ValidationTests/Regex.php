@@ -41,8 +41,8 @@ class Regex extends ValidationTest {
 		$match = (!isset($props["match"])) ? true : $props["match"];
 		
 		if (!filter_var($regex, FILTER_VALIDATE_REGEXP)) {
-			Error::setError($regex." is an invalid regex");
-			Error::render();
+			Error::set($regex." is an invalid regex");
+			return false;
 		}
 		
 		$value = preg_match($regex,$itemValue);
@@ -50,7 +50,7 @@ class Regex extends ValidationTest {
 		if ($value !== $match) {
 			$defaultMessage = "The value ".$itemName." is not valid.";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

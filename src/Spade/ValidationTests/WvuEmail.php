@@ -33,8 +33,8 @@ class WvuEmail extends ValidationTest {
 		
 		// make sure this is a string
 		if (!is_string($itemValue)) {
-			Error::setError("a non-string value for ".$itemName." was passed to the email test");
-			Error::render();
+			Error::set("a non-string value for ".$itemName." was passed to the email test");
+			return false;
 		}
 		
 		// set-up the message
@@ -45,7 +45,7 @@ class WvuEmail extends ValidationTest {
 		if (!$emailValidator->isValid($itemValue)) {
 			$defaultMessage = $itemName." is not a valid email address";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		
@@ -55,7 +55,7 @@ class WvuEmail extends ValidationTest {
 		if (in_array($domain,$wvuDomains)) {
 			$defaultMessage = $itemName." is not a valid WVU email address";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

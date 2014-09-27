@@ -33,14 +33,14 @@ class LessThan extends ValidationTest {
 	public function test($itemValue, $itemName = "", $props = array()) {
 		
 		if (!isset($props["value"])) {
-			Error::setError("need a value to compare");
-			Error::render();
+			Error::set("need a value to compare");
+			return false;
 		}
 		
 		if ($itemValue > $props["value"]) {
 			$defaultMessage = "The value ".$itemName." should be less than or equal to ".$props["value"].".";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, str_replace("{{ comparedValue }}", $props["value"], $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

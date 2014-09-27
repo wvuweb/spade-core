@@ -37,8 +37,8 @@ class Length extends ValidationTest {
 		
 		// make sure it's an appropriate type
 		if (is_array($itemValue) || (is_bool($itemValue))) {
-			Error::setError("invalid item type for the length test");
-			Error::render();
+			Error::set("invalid item type for the length test");
+			return false;
 		}
 		
 		// set-up default props
@@ -55,7 +55,7 @@ class Length extends ValidationTest {
 		} else if (isset($props["range"])) {
 			$bits = explode(",",$props["range"]);
 			if (!isset($bits[1])) {
-				Error::setError("the range option for the length test requires a second attribute");
+				Error::set("the range option for the length test requires a second attribute");
 				Error::render();
 			}
 			$rangeMin = $bits[0];
@@ -64,7 +64,7 @@ class Length extends ValidationTest {
 				$error = true;
 			}
 		} else {
-			Error::setError("the test type is not supported by the length test");
+			Error::set("the test type is not supported by the length test");
 			Error::render();
 		}
 		
@@ -72,7 +72,7 @@ class Length extends ValidationTest {
 		if ($error) {
 			$defaultMessage = "The value ".$itemName." is not the correct length.";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

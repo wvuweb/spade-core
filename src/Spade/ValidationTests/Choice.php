@@ -48,15 +48,15 @@ class Choice extends ValidationTest {
 		} else if (isset($props["callback"])) {
 			$callbackOptions = explode(",",$props["callback"]);
 			if (!isset($callbackOptions[1])) {
-				Error::setError("your callback needs two separate options");
-				Error::render();
+				Error::set("your callback needs two separate options");
+				return false;
 			}
 			$callbackModel   = $callbackOptions[0];
 			$callbackOption  = $callbackOptions[1];
 			$choices         = $callbackModel::$callbackOption();
 		} else {
-			Error::setError("you must supply a list of choices for the choice test.");
-			Error::render();
+			Error::set("you must supply a list of choices for the choice test.");
+			return false;
 		}
 		
 		// evaluate if this is a single option or multiple options to check
@@ -64,20 +64,20 @@ class Choice extends ValidationTest {
 			
 			$defaultMessage = "The value, ".$itemName.", you selected is not a valid choice.";
 			$message = (isset($props["message"])) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 			
 		} else if (is_array($itemValue) && isset($props["multiple"]) && ($props["multiple"] == false)) {
 			
 			if (count($itemValue) > 1) {
-				Error::setError("you can only provide one option for the choice test.");
-				Error::render();
+				Error::set("you can only provide one option for the choice test.");
+				return false;
 			}
 			
 			if (!in_array($itemValue[0],$choices)) {
 				$defaultMessage = "The value, ".$itemName.", you selected is not a valid choice.";
 				$message = (isset($props["message"])) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 			
@@ -96,7 +96,7 @@ class Choice extends ValidationTest {
 			if (($cnt < $min) || ($cnt > $max)) {
 				$defaultMessage = "One or more of the given values is invalid.";
 				$message = (isset($props["message"])) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 			

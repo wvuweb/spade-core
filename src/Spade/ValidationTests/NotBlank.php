@@ -35,7 +35,7 @@ class NotBlank extends ValidationTest {
 		if ($itemValue == "") {
 			$defaultMessage = "The value ".$itemName." should not be blank.";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

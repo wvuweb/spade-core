@@ -9,8 +9,8 @@
 
 namespace Spade\ValidationTests;
 
-use \Egulias\EmailValidator\EmailValidator;
 use \Spade\Error;
+use \Spade\Render;
 use \Spade\ValidationTest;
 
 class Email extends ValidationTest {
@@ -33,19 +33,17 @@ class Email extends ValidationTest {
 		
 		// make sure this is a string
 		if (!is_string($itemValue)) {
-			Error::setError("a non-string value for ".$itemName." was passed to the email test");
-			Error::render();
+			Error::set("a non-string value for ".$itemName." was passed to the email test");
+			return false;
 		}
 		
 		// set-up the message
 		$message = $props["string"];
 		
-		// validate the address
-		$emailValidator = new EmailValidator;
-		if (!$emailValidator->isValid($itemValue)) {
-			$defaultMessage = "The value ".$itemName." is not a valid email address.";
+		if (!filter_var($itemValue, FILTER_VALIDATE_EMAIL)) {
+			$defaultMessage = "The value ".$itemValue." is not a valid email address.";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

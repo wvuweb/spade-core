@@ -38,7 +38,7 @@ class True extends ValidationTest {
 		if (is_null($itemValue) || !$itemValue) {
 			$defaultMessage = "The value ".$itemName." should be true.";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

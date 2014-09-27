@@ -34,8 +34,8 @@ class NotIdenticalTo extends ValidationTest {
 	public function test($itemValue, $itemName = "", $props = array()) {
 		
 		if (!isset($props["value"])) {
-			Error::setError("need a value to compare equal to");
-			Error::render();
+			Error::set("need a value to compare equal to");
+			return false;
 		}
 		
 		if (($props["value"] !== 0) && is_bool($props["value"])) {
@@ -51,7 +51,7 @@ class NotIdenticalTo extends ValidationTest {
 		if ($itemValue === $props["value"]) {
 			$defaultMessage = "This value ".$itemName." should not be identical to ".$props["value"].".";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, str_replace("{{ comparedValue }}", $props["value"], $props["message"])) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

@@ -35,7 +35,7 @@ class Url extends ValidationTest {
 		if (!filter_var($itemValue, FILTER_VALIDATE_URL)) {
 			$defaultMessage = "The value ".$itemName." is not a valid URL.";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

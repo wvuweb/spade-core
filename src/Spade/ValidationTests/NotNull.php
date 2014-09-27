@@ -35,7 +35,7 @@ class NotNull extends ValidationTest {
 		if (is_null($itemValue)) {
 			$defaultMessage = "The value ".$itemName." not be null.";
 			$message = (!empty($message)) ? str_replace("{{ itemName }}", $itemName, $message) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

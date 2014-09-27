@@ -56,14 +56,14 @@ class Type extends ValidationTest {
 		}
 		
 		if (!function_exists($funcName)) {
-			Error::setError("The given type, ".$type.", is not supported by the Type validation test.");
-			Error::render();
+			Error::set("The given type, ".$type.", is not supported by the Type validation test.");
+			return false;
 		}
 		
 		if (!$funcName($itemValue)) {
 			$defaultMessage = "The value ".$itemName." should be of type ".$type.".";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, str_replace("{{ type }}", $type, $props["message"])) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

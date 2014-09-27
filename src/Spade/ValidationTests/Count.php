@@ -35,8 +35,8 @@ class Count extends ValidationTest {
 	public function test($itemValue, $itemName = "", $props = array()) {
 		
 		if (!is_array($itemValue) && !is_object($itemValue)) {
-			Error::setError("the value passed to the count test must be an object or array.");
-			Error::render();
+			Error::set("the value passed to the count test must be an object or array.");
+			return false;
 		}
 		
 		$cnt = 0;
@@ -48,28 +48,28 @@ class Count extends ValidationTest {
 			if (($cnt < $props["min"]) || ($cnt > $props["max"])) {
 				$defaultMessage = "The value, ".$itemName.", you selected should have between ".$props["min"]." and ".$props["max"]." parts selected.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 		} else if (isset($props["min"])) {
 			if ($cnt < $props["min"]) {
 				$defaultMessage = "The collection, ".$itemName.", should contain ".$props["min"]." elements or more.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 		} else if (isset($props["max"])) {
 			if ($cnt > $props["max"]) {
 				$defaultMessage = "The collection, ".$itemName.", should contain ".$props["max"]." elements or less.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 		} else if (isset($props["exact"])) {
 			if ($cnt !== $props["exact"]) {
 				$defaultMessage = "The collection, ".$itemName.", should contain exactly ".$props["exact"]." elements.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 		}
@@ -78,19 +78,19 @@ class Count extends ValidationTest {
 		if ((is_string($itemValue) || is_int($itemValue)) && !in_array($itemValue,$choices)) {
 			$defaultMessage = "The value, ".$itemName.", you selected is not a valid choice.";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		} else if (is_array($itemValue) && isset($props["multiple"]) && ($props["multiple"] == false)) {
 			
 			if (count($itemValue) > 1) {
-				Error::setError("you can only provide one option for the choice test.");
-				Error::render();
+				Error::set("you can only provide one option for the choice test.");
+				return false;
 			}
 			
 			if (!in_array($itemValue[0],$choices)) {
 				$defaultMessage = "The value, ".$itemName.", you selected is not a valid choice.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 			
@@ -109,13 +109,13 @@ class Count extends ValidationTest {
 			if (($cnt >= $min) && ($cnt <= $max)) {
 				$defaultMessage = "One or more of the given values is invalid.";
 				$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-				Error::setError($message);
+				Error::set($message);
 				return false;
 			}
 			
 		} else {
-			Error::setError("unsupported type for the choice test.");
-			Error::render();
+			Error::set("unsupported type for the choice test.");
+			return false;
 		}
 		
 		return true;

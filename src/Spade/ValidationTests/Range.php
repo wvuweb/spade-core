@@ -35,14 +35,14 @@ class Range extends ValidationTest {
 		
 		// make sure it's an appropriate type
 		if (($itemValue = filter_var($itemValue,FILTER_VALIDATE_INT)) === false) {
-			Error::setError("This value should be a valid number.");
-			Error::render();
+			Error::set("This value should be a valid number.");
+			return false;
 		}
 		
 		// make sure the range is properly set
 		if (!isset($props["min"]) || !isset($props["max"])) {
-			Error::setError("This test requires both min and max values.s");
-			Error::render();
+			Error::set("This test requires both min and max values.s");
+			return false;
 		}
 		
 		// set-up default props
@@ -53,7 +53,7 @@ class Range extends ValidationTest {
 		if (($props["min"] > $itemValue) || ($itemValue > $props["max"])) {
 			$defaultMessage = "This value ".$itemName." is not within the valid range of ".$props["min"]."-".$props["max"].".";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, $props["message"]) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		

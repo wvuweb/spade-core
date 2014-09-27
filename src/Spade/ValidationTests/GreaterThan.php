@@ -33,14 +33,14 @@ class GreaterThan extends ValidationTest {
 	public function test($itemValue, $itemName = "", $props = array()) {
 		
 		if (!isset($props["value"])) {
-			Error::setError("need a value to compare");
-			Error::render();
+			Error::set("need a value to compare");
+			return false;
 		}
 		
 		if ($props["value"] >= $itemValue) {
 			$defaultMessage = "The value ".$itemName." should be greater than ".$props["value"]".";
 			$message = (isset($props["message"]) && ($props["message"] != "~")) ? str_replace("{{ itemName }}", $itemName, str_replace("{{ comparedValue }}", $props["value"], $props["message"])) : $defaultMessage;
-			Error::setError($message);
+			Error::set($message);
 			return false;
 		}
 		
