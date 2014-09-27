@@ -26,8 +26,8 @@ class Model {
 		// set-up the database connection info
 		$name = Config::getOption("name");
 		$host = Config::getOption("host");
-		$user = Config::getOption("user");
-		$pass = Config::getOption("pass");
+		$user = (empty(Config::getOption("readwrite.user")) ? Config::getOption("user") : Config::getOption("readwrite.user");
+		$pass = (empty(Config::getOption("readwrite.pass")) ? Config::getOption("pass") : Config::getOption("readwrite.pass");
 		$port = Config::getOption("port");
 		Pheasant::setup("mysql://".$user.":".$pass."@".$host.":".$port."/".$name);
 		
