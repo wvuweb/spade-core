@@ -19,10 +19,10 @@ class Admin extends Controller {
 	/**
 	* Class start-up functions used by all of the steps
 	*/
-	function __construct($app) {
+	function __construct() {
 		
 		// skip the timestamp check for this app
-		Session::check($app,true);
+		Session::check(true);
 		
 	}
 	
