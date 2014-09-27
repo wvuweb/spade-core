@@ -29,13 +29,4 @@ class Controller {
 		$this->data = array();
 	}
 	
-	/**
-	* Get the flash message from the session
-	*/
-	public function getFlash($flash) {
-		
-		return (isset($_SESSION["slim.flash"]) && isset($_SESSION["slim.flash"][$flash])) ? $_SESSION["slim.flash"][$flash] : false;
-		
-	}
-	
 }
