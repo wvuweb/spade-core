@@ -13,7 +13,7 @@ namespace Spade;
 
 use \Spade\App;
 use \Spade\Config;
-use \SpadeKit\Models\User;
+use \Spade\Models\User;
 use \Spade\Render;
 use \Spade\Timer;
 
