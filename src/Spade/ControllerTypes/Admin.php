@@ -12,6 +12,7 @@
 namespace Spade\ControllerTypes;
 
 use \Spade\ControllerTypes\Page;
+use \Spade\CSRF;
 use \Spade\Session;
 
 class Admin extends Page {
@@ -24,8 +25,9 @@ class Admin extends Page {
 		parent::__construct();
 		
 		// skip the timestamp check for this app
-		$this->data["showActions"] = true;
 		Session::check(true);
+		$this->data["showActions"] = true;
+		$this->data["csrfToken"]   = CSRF::generateToken();
 		
 	}
 	
