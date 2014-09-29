@@ -15,6 +15,22 @@ use \Spade\Controller;
 
 class Page extends Controller {
 	
+	function __construct() {
+		
+		parent::__construct();
+		
+		// see if there is a flash to show
+		if ($flash = $this->getFlash("error")) {
+			$this->data["flashError"] = $flash;
+		}
+		
+		// see if there is a flash to show
+		if ($flash = $this->getFlash("success")) {
+			$this->data["flashSuccess"] = $flash;
+		}
+		
+	}
+	
 	/**
 	* Get the flash message from the session
 	*/
