@@ -29,7 +29,7 @@ class CSRF {
 	*/
 	public static function checkToken($checkPostData = true) {
 		$checkData = ($checkPostData) ? $_POST : $_GET;
-		if (!NoCSRF::check('csrf_token', $checkData, false, null, true)) {
+		if (!NoCSRF::check('csrf_token', $checkData, false, 60*20, false)) {
 			header('HTTP/1.0 403 Forbidden');
 			print "forbidden";
 			exit;
