@@ -128,6 +128,11 @@ class Auth {
 		
 		$app = App::get();
 		
+		if ((gettype($username) != "string") || (gettype($password) != "string")) {
+			$app->flash('error', self::$messages["user"]);
+			$app->redirect('/login/');
+		}
+		
 		$username = strtolower(trim($username));
 		if (empty($username) || empty($username) || !preg_match("/[a-z0-9\-]{3,30}/",$username)) {
 			$app->flash('error', self::$messages["user"]);
