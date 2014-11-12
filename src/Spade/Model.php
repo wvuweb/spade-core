@@ -26,7 +26,7 @@ class Model {
 		$defaultUser   = Config::getOption("user");
 		$defaultPass   = Config::getOption("pass");
 		$readwriteUser = Config::getOption("readwrite.user");
-		$readwritePass = Config::getOption("readwrite.user");
+		$readwritePass = Config::getOption("readwrite.pass");
 		
 		// set-up the database connection info
 		$name = Config::getOption("name");
