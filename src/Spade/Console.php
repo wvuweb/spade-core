@@ -267,7 +267,7 @@ class Console {
 		
 		The generic help follows this format:
 		
-		Pattern Lab Console Options
+		Console Options
 		
 		Usage:
 		  php core/console command [options]
@@ -288,7 +288,7 @@ class Console {
 		
 		// write out the generic usage info
 		self::writeLine("");
-		self::writeLine("<h1>Pattern Lab Console Options</h1>",true,true);
+		self::writeLine("<h1>Console Options</h1>",true,true);
 		self::writeLine("<h2>Usage</h2>:",true,true);
 		self::writeLine("  php ".self::$self." command <optional>[options]</optional>",true,true);
 		self::writeLine("<h2>Available commands</h2>:",true,true);
