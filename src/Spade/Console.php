@@ -161,7 +161,7 @@ class Console {
 	public static function loadCommands() {
 		$baseDir   = Config::getOption("baseDir");
 		$namespace = Config::getOption("namespace");
-		$scanDirs  = array($namespace => "app/", "Spade\Console" => "vendor/Spade/Console/");
+		$scanDirs  = array($namespace => "app/SpadeKit/", "Spade\Console" => "vendor/Spade/Console/");
 		foreach($scanDirs as $namespace => $dir) {
 			foreach (glob($baseDir.$dir."Commands/*.php") as $filename) {
 				$command = str_replace(".php","",str_replace($baseDir.$dir."Commands/","",$filename));
