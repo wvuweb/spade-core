@@ -60,7 +60,7 @@ class Length extends ValidationTest {
 			}
 			$rangeMin = $bits[0];
 			$rangeMax = $bits[1];
-			if ($rangeMin > $length) || ($length > $rangeMax) {
+			if (($rangeMin > $length) || ($length > $rangeMax)) {
 				$error = true;
 			}
 		} else {
