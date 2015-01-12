@@ -69,7 +69,7 @@ class Validator {
 		$fields  = array();
 		$options = Config::getOptions();
 		foreach ($options as $option => $values) {
-			if (strpos($option,"validations.".$modelName) !== false) {
+			if (strpos($option,"validations.".$modelName.".") !== false) {
 				$bits = explode(".",$option);
 				$fields[] = $bits[2];
 			}
