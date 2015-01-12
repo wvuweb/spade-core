@@ -56,16 +56,13 @@ class Length extends ValidationTest {
 			$bits = explode(",",$props["range"]);
 			if (!isset($bits[1])) {
 				Error::set("the range option for the length test requires a second attribute");
-				Error::render();
+				return false;
 			}
 			$rangeMin = $bits[0];
 			$rangeMax = $bits[1];
 			if (($rangeMin > $length) || ($length > $rangeMax)) {
 				$error = true;
 			}
-		} else {
-			print_r($props);
-			Render::error("the test type is not supported by the length test");
 		}
 		
 		// write out the error if necessary
