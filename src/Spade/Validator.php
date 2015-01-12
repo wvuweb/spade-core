@@ -33,7 +33,8 @@ class Validator {
 			}
 			$flashMessage .= "</ul>";
 			$app->flash('error', $flashMessage);
-			$app->redirect('/'.$page.'/');
+			$page = empty($page) ? $_SERVER['HTTP_REFERER'] : $page;
+			$app->redirect($page);
 		}
 	}
 	
