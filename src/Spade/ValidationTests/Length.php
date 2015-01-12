@@ -64,8 +64,8 @@ class Length extends ValidationTest {
 				$error = true;
 			}
 		} else {
-			Error::set("the test type is not supported by the length test");
-			Error::render();
+			print_r($props);
+			Render::error("the test type is not supported by the length test");
 		}
 		
 		// write out the error if necessary
