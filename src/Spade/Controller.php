@@ -17,18 +17,18 @@ use \Spade\Render;
 use \Spade\Timer;
 
 class Controller {
-	
+
 	protected $app;
 	protected $data;
-	
+
 	/**
 	* Initialize the app var
 	*/
 	public function __construct() {
-		
+
 		$this->app  = App::get();
 		$this->data = array();
-		
+		$this->data['defaults'] = Config::getOption("defaults");
 	}
-	
+
 }
