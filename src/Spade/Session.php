@@ -31,7 +31,7 @@ class Session {
 
 		// add db data
 		$databaseSession->setDbDetails();
-		$databaseSession->setDbTable('session_handler_table');
+		$databaseSession->setDbTable('session_handler');
 		session_set_save_handler(array($databaseSession, 'open'),
 		                         array($databaseSession, 'close'),
 		                         array($databaseSession, 'read'),
