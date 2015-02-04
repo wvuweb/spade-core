@@ -19,7 +19,7 @@ use \Illuminate\Database\Eloquent\Model;
 class Session extends \Illuminate\Database\Eloquent\Model {
 
 	/**
-	* The database table name to map to, defaults to the name of the class
+	* The database table name to map to
 	*/
 	protected $table = 'sessions';
 
