@@ -11,23 +11,42 @@
 
 namespace Spade\Models;
 
-use \Pheasant\Types;
 use \Spade\Error;
-use \Spade\Model;
 use \Spade\Render;
 use \Spade\Validator;
+use \Illuminate\Database\Eloquent\Model;
 
-class User extends \Pheasant\DomainObject {
-	
-	public function properties() {
-		return array(
-			'id'       => new Types\Integer(11, 'primary auto_increment'),
-			'username' => new Types\String(45, 'required'),
-			'active'   => new Types\String(45, 'required'),
-			'added_by' => new Types\String(45, 'required'),
-			'added_on' => new Types\String(45, 'required'),
-			'admin'    => new Types\Integer(11, 'required')
-		);
-	}
-	
+class User extends \Illuminate\Database\Eloquent\Model {
+
+	/**
+	* The database table name to map to, defaults to the name of the class
+	*/
+	protected $table = 'users';
+
+	/**
+	* Before create let's make sure we validate the data and populate the session id
+	* @param  {Object}        the event
+	* @param  {Object}        the session object
+	*/
+	public function beforeCreate($event,$object) {}
+
+	/**
+	* Before update let's set some information
+	* @param  {Object}        the event
+	* @param  {Object}        the session object
+	*/
+	public function beforeUpdate($event,$object) {}
+
+	/**
+	* Notes
+	*
+	* Eloquent will also assume that each table has a primary key column named id.
+	* You may define a primaryKey property to override this convention. Likewise,
+	* you may define a connection property to override the name of the database
+	* connection that should be used when utilizing the model.
+	*
+	* Relationships
+	* http://laravel.com/docs/4.2/eloquent#relationships
+	*/
+
 }

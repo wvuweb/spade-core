@@ -11,56 +11,45 @@
 
 namespace Spade\Models;
 
-use \Pheasant\Types;
 use \Spade\Error;
-use \Spade\Model;
 use \Spade\Render;
 use \Spade\Validator;
+use \Illuminate\Database\Eloquent\Model;
 
-class Session extends \Pheasant\DomainObject {
-	
+class Session extends \Illuminate\Database\Eloquent\Model {
+
 	/**
-	 * The properties that define the database
-	 */
-	public function properties() {
-		return array(
-			'id'         => new Types\Integer(11, 'primary auto_increment'),
-			'user_id'    => new Types\Integer(11, 'required'),
-			'session_id' => new Types\String(45, 'required'),
-			'remote_ip'  => new Types\String(45)
-		);
-	}
-	
+	* The database table name to map to, defaults to the name of the class
+	*/
+	protected $table = 'sessions';
+
 	/**
-	 * REMINDER: CAN DO RELATIONSHIPS
-	 *	public function relationships() {
-	 *		return array(
-	 *			'Type' => Type::hasOne('type_id')
-	 *		);
-	 *	}
-	 */
-	
-	/**
-	 * Before create let's make sure we validate the data and populate the session id
-	 * @param  {Object}        the session object
-	 */
+	* Before create let's make sure we validate the data and populate the session id
+	* @param  {Object}        the event
+	* @param  {Object}        the session object
+	*/
 	public function beforeCreate($event,$object) {
-		
 		// populate session info here. could also populate the remoted ip here
 		$object->session_id = session_id();
-		
-		/**
-		 * Validate objects and use their class name to find items in validations.yml
-		 * Validator::validateObject($object,"Status");
-		 * Validator::checkForErrors();
-		 */
-		
 	}
-	
-	public function beforeUpdate($event,$object) {
-		
-		// can do stuff here
-		
-	}
-	
+
+	/**
+	* Before update let's set some information
+	* @param  {Object}        the event
+	* @param  {Object}        the session object
+	*/
+	public function beforeUpdate($event,$object) {}
+
+	/**
+	* Notes
+	*
+	* Eloquent will also assume that each table has a primary key column named id.
+	* You may define a primaryKey property to override this convention. Likewise,
+	* you may define a connection property to override the name of the database
+	* connection that should be used when utilizing the model.
+	*
+	* Relationships
+	* http://laravel.com/docs/4.2/eloquent#relationships
+	*/
+
 }
