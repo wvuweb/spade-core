@@ -37,7 +37,7 @@ class Email {
 		}
 		
 		// populate default vars
-		$optionBase   = self::getOptionBase($options["emailName"]);
+		$optionBase   = self::getOptionBase($emailName);
 		$data         = isset($options["data"])         ? $options["data"] : array();
 		$to           = isset($options["to"])           ? $options["to"] : Config::getOption($optionBase."to");
 		$cc           = isset($options["cc"])           ? $options["cc"] : Config::getOption($optionBase."cc");
