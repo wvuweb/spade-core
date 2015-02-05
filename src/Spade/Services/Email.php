@@ -46,7 +46,7 @@ class Email {
 		$templatePath = isset($options["templatePath"]) ? $options["templatePath"] : Config::getOption($optionBase."template");
 		
 		// render the email body
-		$body         = Render::template($templatePath,$data);
+		$body         = Render::template($templatePath,$data,false);
 		
 		// make sure certain vars are arrays for swiftmailer
 		$to           = (!is_array($to))   ? array($to)   : $to;
