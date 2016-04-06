@@ -57,7 +57,7 @@ class Email {
     $from         = (!is_array($from)) ? array($from) : $from;
 
     // swiftmailer connection info
-    $transport    = \Swift_SmtpTransport::newInstance('smtp.wvu.edu', 25);
+    $transport    = \Swift_SmtpTransport::newInstance($smtpHost, $smtpPort);
     $mailer       = \Swift_Mailer::newInstance($transport);
 
     // set-up and send the message
